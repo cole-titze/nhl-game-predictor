@@ -1,0 +1,3 @@
+import trigger
+
+trigger.start()
