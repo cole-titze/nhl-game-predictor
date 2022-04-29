@@ -1,3 +1,0 @@
-import trigger
-
-trigger.start()

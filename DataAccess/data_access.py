@@ -1,4 +1,5 @@
 import pyodbc
+import sys
 from Entities.Mappers import pregame_mapper
 
 server = 'nhl-game.database.windows.net'
@@ -17,7 +18,4 @@ def get_cleaned_pregames() -> list:
             while row:
                 pregameList.append(row)
                 row = cursor.fetchone()
-    print("done")
     return pregame_mapper.map_db_pregames_to_entities(pregameList)
-
-get_cleaned_pregames()
