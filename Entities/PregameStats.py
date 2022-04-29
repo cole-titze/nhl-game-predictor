@@ -2,12 +2,14 @@ from dataclasses import dataclass
 
 @dataclass
 class PregameStats:
-    home_team_name: str
-    away_team_name: str
-    season_start_year: int
-    home_win_ratio: float
-    home_recent_win_ratio: float
-    home_recent_goals_avg: float
+    id: int
+    homeTeamName: str
+    awayTeamName: str
+    seasonStartYear: int
+    gameDate: str
+    homeWinRatio: float
+    homeRecentWinRatio: float
+    homeRecentGoalsAvg: float
     homeRecentConcededGoalsAvg: float
     homeRecentSogAvg: float
     homeRecentPpgAvg: float
@@ -25,7 +27,7 @@ class PregameStats:
     awayWinRatio: float
     awayRecentWinRatio: float
     awayRecentGoalsAvg: float
-    awayRecentConcededGoals: float # should be avg
+    awayRecentConcededGoalsAvg: float
     awayRecentSogAvg: float
     awayRecentPpgAvg: float
     awayRecentHitsAvg: float
