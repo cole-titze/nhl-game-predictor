@@ -1,5 +1,6 @@
 import datetime
 import logging
+import data_access as da
 
 import azure.functions as func
 
@@ -15,4 +16,4 @@ def main(mytimer: func.TimerRequest) -> None:
 
 
 def start():
-    
+    print("Testing")
