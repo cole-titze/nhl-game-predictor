@@ -1,3 +1,3 @@
-import DataAccess.data_access as da
+import GamePredictionTrigger.trigger as trigger
 
-da.get_cleaned_pregames()
+trigger.start()
