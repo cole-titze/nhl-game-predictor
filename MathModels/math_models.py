@@ -4,13 +4,13 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
 class Model:
-    def __init_(self, Name, Model):
-        name = Name,
-        model = Model
+    def __init__(self, Name, Model):
+        self.name = Name,
+        self.model = Model
 
 class MathModels:
     models = []
-
+    
     def __init__(self):
         knn = KNeighborsClassifier(n_neighbors=15)
         kmeans = KMeans(n_clusters=2, random_state=42)

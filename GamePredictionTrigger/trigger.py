@@ -1,13 +1,10 @@
 import datetime
 import logging
-import data_access as da
-import Predictions as predictions
-
+import MathModels.run_models as run_models
 import azure.functions as func
 
-
 def start():
-    predictions.CreateAndStorePredictions()
+    run_models.test_models()
 
 def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
@@ -18,3 +15,4 @@ def main(mytimer: func.TimerRequest) -> None:
 
     logging.info('Python timer trigger function ran at %s', utc_timestamp)
     start()
+    

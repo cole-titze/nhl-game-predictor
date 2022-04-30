@@ -1,50 +1,51 @@
-from Entities import PregameStats
-pregame = PregameStats
+from Entities import pregame_stats
 
 def map_db_pregames_to_entities(gameList: list) -> list:
     pregame_list = []
     for game in gameList:
-        pregame.id = game[0]
-        pregame.homeTeamName = game[1]
-        pregame.awayTeamName = game[2]
-        pregame.seasonStartYear = game[3]
-        pregame.gameDate = game[4]
-        pregame.homeWinRatio = game[5]
-        pregame.homeRecentWinRatio = game[6]
-        pregame.homeRecentGoalsAvg = game[7]
-        pregame.homeRecentConcededGoalsAvg = game[8]
-        pregame.homeRecentSogAvg = game[9]
-        pregame.homeRecentPpgAvg = game[10]
-        pregame.homeRecentHitsAvg = game[11]
-        pregame.homeRecentPimAvg = game[12]
-        pregame.homeRecentBlockedShotsAvg = game[13]
-        pregame.homeRecentTakeawaysAvg = game[14]
-        pregame.homeRecentGiveawaysAvg = game[15]
-        pregame.homeGoalsAvg = game[16]
-        pregame.homeGoalsAvgAtHome = game[17]
-        pregame.homeRecentGoalsAvgAtHome = game[18]
-        pregame.homeConcededGoalsAvg = game[19]
-        pregame.homeConcededGoalsAvgAtHome = game[20]
-        pregame.homeRecentConcededGoalsAvgAtHome = game[21]
-        pregame.awayWinRatio = game[22]
-        pregame.awayRecentWinRatio = game[23]
-        pregame.awayRecentGoalsAvg = game[24]
-        pregame.awayRecentConcededGoalsAvg = game[25]
-        pregame.awayRecentSogAvg = game[26]
-        pregame.awayRecentPpgAvg = game[27]
-        pregame.awayRecentHitsAvg = game[28]
-        pregame.awayRecentPimAvg = game[29]
-        pregame.awayRecentBlockedShotsAvg = game[30]
-        pregame.awayRecentTakeawaysAvg = game[31]
-        pregame.awayRecentGiveawaysAvg = game[32]
-        pregame.awayGoalsAvg = game[33]
-        pregame.awayGoalsAvgAtAway = game[34]
-        pregame.awayRecentGoalsAvgAtAway = game[35]
-        pregame.awayConcededGoalsAvg = game[36]
-        pregame.awayConcededGoalsAvgAtAway = game[37]
-        pregame.awayRecentConcededGoalsAvgAtAway = game[38]
-        pregame.winner = game[39]
-
+        pregame = pregame_stats.PregameStats(
+            id=game[0],
+            homeTeamName=game[1],
+            awayTeamName=game[2],
+            seasonStartYear=game[3],
+            gameDate=game[4],
+            homeWinRatio=game[5],
+            homeRecentWinRatio=game[6],
+            homeRecentGoalsAvg=game[7],
+            homeRecentConcededGoalsAvg=game[8],
+            homeRecentSogAvg=game[9],
+            homeRecentPpgAvg=game[10],
+            homeRecentHitsAvg=game[11],
+            homeRecentPimAvg=game[12],
+            homeRecentBlockedShotsAvg=game[13],
+            homeRecentTakeawaysAvg=game[14],
+            homeRecentGiveawaysAvg=game[15],
+            homeGoalsAvg=game[16],
+            homeGoalsAvgAtHome=game[17],
+            homeRecentGoalsAvgAtHome=game[18],
+            homeConcededGoalsAvg=game[19],
+            homeConcededGoalsAvgAtHome=game[20],
+            homeRecentConcededGoalsAvgAtHome=game[21],
+            awayWinRatio=game[22],
+            awayRecentWinRatio=game[23],
+            awayRecentGoalsAvg=game[24],
+            awayRecentConcededGoalsAvg=game[25],
+            awayRecentSogAvg=game[26],
+            awayRecentPpgAvg=game[27],
+            awayRecentHitsAvg=game[28],
+            awayRecentPimAvg=game[29],
+            awayRecentBlockedShotsAvg=game[30],
+            awayRecentTakeawaysAvg=game[31],
+            awayRecentGiveawaysAvg=game[32],
+            awayGoalsAvg=game[33],
+            awayGoalsAvgAtAway=game[34],
+            awayRecentGoalsAvgAtAway=game[35],
+            awayConcededGoalsAvg=game[36],
+            awayConcededGoalsAvgAtAway=game[37],
+            awayRecentConcededGoalsAvgAtAway=game[38],
+            winner=game[39],
+            isExcluded=game[40])
+        
         pregame_list.append(pregame)
 
     return pregame_list
