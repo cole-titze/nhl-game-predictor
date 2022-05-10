@@ -4,7 +4,11 @@ import MathModels.run_models as run_models
 import azure.functions as func
 
 def start():
-    run_models.test_models()
+    for i in range(10):
+        print(str(i) + " Test Run")
+        run_models.test_models()
+    #run_models.predict_todays_games()
+
 
 def main(mytimer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(

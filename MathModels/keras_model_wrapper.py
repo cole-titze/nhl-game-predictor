@@ -1,6 +1,8 @@
-from sklearn.metrics import accuracy_score
+import numpy as np
+
 
 class MathModel:
+    prediction_titles = None
     prediction = None
     odds = None
     winner = None
@@ -16,14 +18,16 @@ class MathModel:
     def train(self):
         self.math_model.fit(self.x_train, self.y_train)
 
+    # Best is 61.1%
     def predict_results(self):
-        y_prediction = self.math_model.predict(self.x_test)
-        self.prediction = accuracy_score(self.y_test, y_prediction)
-    
+        self.prediction_titles = self.math_model.metrics_names
+        self.prediction = self.math_model.evaluate(self.x_test, self.y_test)
+
     def print_model_result(self):
         print(self.name)
+        print(self.prediction_titles)
         print(self.prediction)
-    
+
     def predict_single_game(self, test_game):
         self.odds = self.math_model.predict_proba(test_game)
         self.winner = self.math_model.predict(test_game)
