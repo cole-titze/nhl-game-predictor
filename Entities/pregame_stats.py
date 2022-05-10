@@ -1,5 +1,8 @@
 from dataclasses import dataclass
 
+import numpy as np
+
+
 @dataclass
 class PregameStats:
     id: int
@@ -44,41 +47,41 @@ class PregameStats:
     winner: float
     isExcluded: bool
     
-    def map_data(game)-> list:
+    def map_data(self) -> np.array:
         x = []
-        x.append(game.homeWinRatio)
-        x.append(game.homeRecentWinRatio)
-        x.append(game.homeRecentGoalsAvg)
-        x.append(game.homeRecentConcededGoalsAvg)
-        x.append(game.homeRecentSogAvg)
-        x.append(game.homeRecentPpgAvg)
-        x.append(game.homeRecentHitsAvg)
-        x.append(game.homeRecentPimAvg)
-        x.append(game.homeRecentBlockedShotsAvg)
-        x.append(game.homeRecentTakeawaysAvg)
-        x.append(game.homeRecentGiveawaysAvg)
-        x.append(game.homeGoalsAvg)
-        x.append(game.homeGoalsAvgAtHome)
-        x.append(game.homeRecentGoalsAvgAtHome)
-        x.append(game.homeConcededGoalsAvg)
-        x.append(game.homeConcededGoalsAvgAtHome)
-        x.append(game.homeRecentConcededGoalsAvgAtHome)
-        x.append(game.awayWinRatio)
-        x.append(game.awayRecentWinRatio)
-        x.append(game.awayRecentGoalsAvg)
-        x.append(game.awayRecentConcededGoalsAvg)
-        x.append(game.awayRecentSogAvg)
-        x.append(game.awayRecentPpgAvg)
-        x.append(game.awayRecentHitsAvg)
-        x.append(game.awayRecentPimAvg)
-        x.append(game.awayRecentBlockedShotsAvg)
-        x.append(game.awayRecentTakeawaysAvg)
-        x.append(game.awayRecentGiveawaysAvg)
-        x.append(game.awayGoalsAvg)
-        x.append(game.awayGoalsAvgAtAway)
-        x.append(game.awayRecentGoalsAvgAtAway)
-        x.append(game.awayConcededGoalsAvg)
-        x.append(game.awayConcededGoalsAvgAtAway)
-        x.append(game.awayRecentConcededGoalsAvgAtAway)
+        x.append(float(self.homeWinRatio))
+        x.append(float(self.homeRecentWinRatio))
+        x.append(float(self.homeRecentGoalsAvg))
+        x.append(float(self.homeRecentConcededGoalsAvg))
+        x.append(float(self.homeRecentSogAvg))
+        x.append(float(self.homeRecentPpgAvg))
+        x.append(float(self.homeRecentHitsAvg))
+        x.append(float(self.homeRecentPimAvg))
+        x.append(float(self.homeRecentBlockedShotsAvg))
+        x.append(float(self.homeRecentTakeawaysAvg))
+        x.append(float(self.homeRecentGiveawaysAvg))
+        x.append(float(self.homeGoalsAvg))
+        x.append(float(self.homeGoalsAvgAtHome))
+        x.append(float(self.homeRecentGoalsAvgAtHome))
+        x.append(float(self.homeConcededGoalsAvg))
+        x.append(float(self.homeConcededGoalsAvgAtHome))
+        x.append(float(self.homeRecentConcededGoalsAvgAtHome))
+        x.append(float(self.awayWinRatio))
+        x.append(float(self.awayRecentWinRatio))
+        x.append(float(self.awayRecentGoalsAvg))
+        x.append(float(self.awayRecentConcededGoalsAvg))
+        x.append(float(self.awayRecentSogAvg))
+        x.append(float(self.awayRecentPpgAvg))
+        x.append(float(self.awayRecentHitsAvg))
+        x.append(float(self.awayRecentPimAvg))
+        x.append(float(self.awayRecentBlockedShotsAvg))
+        x.append(float(self.awayRecentTakeawaysAvg))
+        x.append(float(self.awayRecentGiveawaysAvg))
+        x.append(float(self.awayGoalsAvg))
+        x.append(float(self.awayGoalsAvgAtAway))
+        x.append(float(self.awayRecentGoalsAvgAtAway))
+        x.append(float(self.awayConcededGoalsAvg))
+        x.append(float(self.awayConcededGoalsAvgAtAway))
+        x.append(float(self.awayRecentConcededGoalsAvgAtAway))
 
-        return x
+        return np.asarray(x)
