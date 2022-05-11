@@ -1,5 +1,5 @@
 import MathModels.sk_models as m
-import MathModels.sk_math_model_wrapper as model_wrapper
+import MathModels.sk_model_wrapper as model_wrapper
 import DataAccess.data_access as da
 
 def test_models():
@@ -10,11 +10,14 @@ def test_models():
     MathModelWrapper = model_wrapper.MathModel
     Models = m.MathModels()
 
+    accuracies = []
     for model in Models.models:
         current_model = MathModelWrapper(x_train, y_train, x_test, y_test, model)
         current_model.train()
         current_model.predict_results()
-        current_model.print_model_result()
+        #current_model.print_model_result()
+        accuracies.append(current_model.get_accuracy())
+    return max(accuracies)
 
 def run_models(test_game):
     gameList = da.get_cleaned_pregames()
