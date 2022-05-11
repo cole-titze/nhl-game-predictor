@@ -21,7 +21,6 @@ class MathModel:
         self.prediction = accuracy_score(self.y_test, y_prediction)
     
     def print_model_result(self):
-        print(self.name)
         print(self.prediction)
     
     def predict_single_game(self, test_game):
@@ -31,3 +30,6 @@ class MathModel:
     def print_single_game_odds(self):
         print(self.odds)
         print(self.winner)
+
+    def get_accuracy(self):
+        return self.prediction
