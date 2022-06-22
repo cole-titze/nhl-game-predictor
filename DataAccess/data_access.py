@@ -6,23 +6,23 @@ server = 'nhl-game.database.windows.net'
 database = 'Games'
 username = 'console'
 password = '{duvton-qofDic-1runxi}'
-driver = '{ODBC Driver 17 for SQL Server}'
+driver = '{ODBC Driver 18 for SQL Server}'
 
 def get_cleaned_pregames() -> list:
-    pregameList = []
+    pregame_list = []
     # Grab all entries from sql
     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+password) as conn:
         with conn.cursor() as cursor:
             cursor.execute("SELECT * FROM CleanedGame") # WHERE seasonStartYear > 2016")
             row = cursor.fetchone()
             while row:
-                pregameList.append(row)
+                pregame_list.append(row)
                 row = cursor.fetchone()
-    return pregame_mapper.map_db_pregames_to_entities(pregameList)
+    return pregame_mapper.map_db_pregames_to_entities(pregame_list)
 
 def get_future_games() -> list:
-    pregameList = []
-    preList = []
+    pregame_list = []
+    pre_list = []
     # Grab all entries from sql
     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+password) as conn:
         with conn.cursor() as cursor:
@@ -30,32 +30,9 @@ def get_future_games() -> list:
             cursor.execute(query)
             row = cursor.fetchone()
             while row:
-                pregameList.append(row)
+                pregame_list.append(row)
                 row = cursor.fetchone()
-    return pregame_mapper.map_db_pregames_to_entities_future(pregameList)
-
-
-def get_train_test_data(game_list: np.array, test_year: int):
-    x_test = []
-    y_test = []
-    x_train = []
-    y_train = []
-    test = []
-    train = []
-
-    for game in game_list:
-        if game.seasonStartYear == test_year:
-            test.append(game)
-        elif game.isExcluded == False:
-            train.append(game)
-    
-    for game in test:
-        y_test.append(game.winner)
-        x_test.append(game.map_data())
-    for game in train:
-        y_train.append(game.winner)
-        x_train.append(game.map_data())
-    return np.asarray(x_train), np.asarray(y_train), np.asarray(x_test), np.asarray(y_test)
+    return pregame_mapper.map_db_pregames_to_entities_future(pregame_list)
 
 def store_probabilities(game_id, home_prob, away_prob):
     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+password) as conn:
