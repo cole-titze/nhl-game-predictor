@@ -10,7 +10,7 @@ def start():
         accuracies.append(accuracy)
     print(max(accuracies))
 
-    #run_models.predict_todays_games()
+    run_models.predict_and_store_todays_games()
 
 
 def main(mytimer: func.TimerRequest) -> None:

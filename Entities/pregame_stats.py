@@ -44,6 +44,12 @@ class PregameStats:
     awayConcededGoalsAvg: float
     awayConcededGoalsAvgAtAway: float
     awayRecentConcededGoalsAvgAtAway: float
+    homeRosterOffenseValue: float
+    homeRosterDefenseValue: float
+    homeRosterGoalieValue: float
+    awayRosterOffenseValue: float
+    awayRosterDefenseValue: float
+    awayRosterGoalieValue: float
     winner: float
     isExcluded: bool
     
@@ -83,5 +89,11 @@ class PregameStats:
         x.append(float(self.awayConcededGoalsAvg))
         x.append(float(self.awayConcededGoalsAvgAtAway))
         x.append(float(self.awayRecentConcededGoalsAvgAtAway))
+        x.append(float(self.homeRosterOffenseValue))
+        x.append(float(self.homeRosterDefenseValue))
+        x.append(float(self.homeRosterGoalieValue))
+        x.append(float(self.awayRosterOffenseValue))
+        x.append(float(self.awayRosterDefenseValue))
+        x.append(float(self.awayRosterGoalieValue))
 
         return np.asarray(x)

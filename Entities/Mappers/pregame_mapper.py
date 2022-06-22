@@ -1,8 +1,8 @@
 from Entities import pregame_stats
 
-def map_db_pregames_to_entities(gameList: list) -> list:
+def map_db_pregames_to_entities(game_list: list) -> list:
     pregame_list = []
-    for game in gameList:
+    for game in game_list:
         pregame = pregame_stats.PregameStats(
             id=game[0],
             homeTeamName=game[1],
@@ -43,17 +43,23 @@ def map_db_pregames_to_entities(gameList: list) -> list:
             awayConcededGoalsAvg=game[36],
             awayConcededGoalsAvgAtAway=game[37],
             awayRecentConcededGoalsAvgAtAway=game[38],
-            winner=game[39],
-            isExcluded=game[40])
+            homeRosterOffenseValue=game[39],
+            homeRosterDefenseValue=game[40],
+            homeRosterGoalieValue=game[41],
+            awayRosterOffenseValue=game[42],
+            awayRosterDefenseValue=game[43],
+            awayRosterGoalieValue=game[44],
+            winner=game[45],
+            isExcluded=game[46])
         
         pregame_list.append(pregame)
 
     return pregame_list
 
 
-def map_db_pregames_to_entities_future(gameList: list) -> list:
+def map_db_pregames_to_entities_future(game_list: list) -> list:
     pregame_list = []
-    for game in gameList:
+    for game in game_list:
         pregame = pregame_stats.PregameStats(
             id=game[0],
             homeTeamName=game[1],
@@ -94,6 +100,12 @@ def map_db_pregames_to_entities_future(gameList: list) -> list:
             awayConcededGoalsAvg=game[36],
             awayConcededGoalsAvgAtAway=game[37],
             awayRecentConcededGoalsAvgAtAway=game[38],
+            homeRosterOffenseValue=game[39],
+            homeRosterDefenseValue=game[40],
+            homeRosterGoalieValue=game[41],
+            awayRosterOffenseValue=game[42],
+            awayRosterDefenseValue=game[43],
+            awayRosterGoalieValue=game[44],
             winner=-1,
             isExcluded=False)
 
