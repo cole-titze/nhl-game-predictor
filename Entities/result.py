@@ -1,6 +1,6 @@
 class Result:
     f_score = None
-    log_loss = 1  # Worst possible
+    log_loss = 10000  # Worst possible
     model = None
     accuracy = None
 
