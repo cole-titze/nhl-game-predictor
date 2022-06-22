@@ -13,7 +13,7 @@ def get_cleaned_pregames() -> list:
     # Grab all entries from sql
     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+password) as conn:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM CleanedGame") # WHERE seasonStartYear > 2016
+            cursor.execute("SELECT * FROM CleanedGame") # WHERE seasonStartYear > 2016")
             row = cursor.fetchone()
             while row:
                 pregameList.append(row)
@@ -44,7 +44,7 @@ def get_train_test_data(game_list: np.array, test_year: int):
     train = []
 
     for game in game_list:
-        if game.seasonStartYear == test_year and game.seasonStartYear != 2020:
+        if game.seasonStartYear == test_year:
             test.append(game)
         elif game.isExcluded == False:
             train.append(game)
@@ -56,3 +56,9 @@ def get_train_test_data(game_list: np.array, test_year: int):
         y_train.append(game.winner)
         x_train.append(game.map_data())
     return np.asarray(x_train), np.asarray(y_train), np.asarray(x_test), np.asarray(y_test)
+
+def store_probabilities(game_id, home_prob, away_prob):
+    with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+password) as conn:
+        with conn.cursor() as cursor:
+            query = "UPDATE PredictedGame SET modelHomeOdds = " + str(home_prob) + ", modelAwayOdds = " + str(away_prob) + "WHERE id = " + str(game_id)
+            cursor.execute(query)

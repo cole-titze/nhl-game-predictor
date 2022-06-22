@@ -43,8 +43,14 @@ def map_db_pregames_to_entities(gameList: list) -> list:
             awayConcededGoalsAvg=game[36],
             awayConcededGoalsAvgAtAway=game[37],
             awayRecentConcededGoalsAvgAtAway=game[38],
-            winner=game[39],
-            isExcluded=game[40])
+            homeRosterOffenseValue=game[39],
+            homeRosterDefenseValue=game[40],
+            homeRosterGoalieValue=game[41],
+            awayRosterOffenseValue=game[42],
+            awayRosterDefenseValue=game[43],
+            awayRosterGoalieValue=game[44],
+            winner=game[45],
+            isExcluded=game[46])
         
         pregame_list.append(pregame)
 
@@ -94,6 +100,12 @@ def map_db_pregames_to_entities_future(gameList: list) -> list:
             awayConcededGoalsAvg=game[36],
             awayConcededGoalsAvgAtAway=game[37],
             awayRecentConcededGoalsAvgAtAway=game[38],
+            homeRosterOffenseValue=game[39],
+            homeRosterDefenseValue=game[40],
+            homeRosterGoalieValue=game[41],
+            awayRosterOffenseValue=game[42],
+            awayRosterDefenseValue=game[43],
+            awayRosterGoalieValue=game[44],
             winner=-1,
             isExcluded=False)
 
