@@ -2,16 +2,18 @@ import datetime
 import logging
 import MathModels.run_models as run_models
 import MathModels.test_models as test_models
+from Entities.result import Result
 import azure.functions as func
 
 number_of_simulations = 5
 
 def start():
-    accuracies = []
+    best_result = Result()
     for i in range(number_of_simulations):
-        accuracy = test_models.test_models()
-        accuracies.append(accuracy)
-    print(max(accuracies))
+        result = test_models.test_models()
+        if result.log_loss < best_result.log_loss:
+            best_result = result
+    best_result.print()
 
     #run_models.predict_and_store_todays_games()
 
