@@ -5,7 +5,8 @@ class Result:
     accuracy = None
 
     def print(self):
+        print("model: " + str(self.model.name))
         print("log_loss: " + str(self.log_loss))
         print("f1_score: " + str(self.f_score))
-        print("model: " + str(self.model.name))
         print("accuracy: " + str(self.accuracy))
+        print()
