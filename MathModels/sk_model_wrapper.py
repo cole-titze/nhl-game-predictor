@@ -5,9 +5,9 @@ class MathModel:
     odds = None
     winner = None
 
-    def __init__(self, x_training, y_training, x_testing, y_testing, modelAndName):
-        self.math_model = modelAndName.model
-        self.name = modelAndName.name
+    def __init__(self, x_training, y_training, x_testing, y_testing, model_and_name):
+        self.math_model = model_and_name.model
+        self.name = model_and_name.name
         self.x_train = x_training
         self.y_train = y_training
         self.x_test = x_testing

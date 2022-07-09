@@ -1,15 +1,32 @@
 import datetime
 import logging
 import MathModels.run_models as run_models
+import MathModels.test_models as test_models
+import DataAccess.data_access as da
 import azure.functions as func
 
-def start():
-    accuracies = []
-    for i in range(10):
-        accuracy = run_models.test_models()
-        accuracies.append(accuracy)
-    print(max(accuracies))
+number_of_simulations = 100
 
+# runtime = number_of_simulations * number_of_models_in_wrapper
+# 5 * 4 = 20 loops
+def test():
+    game_list = da.get_cleaned_pregames()
+
+    best_results = None
+    for _ in range(number_of_simulations):
+        results = test_models.test_models(game_list)
+        if best_results is None:
+            best_results = results
+        for i, result in enumerate(results):
+            if result.log_loss < best_results[i].log_loss:
+                best_results[i] = result
+    for index, best_result in enumerate(best_results):
+        if index == (len(best_results) / 2):
+            print("Dimensionality Reduction Input Data:")
+        best_result.print()
+
+
+def start():
     run_models.predict_and_store_todays_games()
 
 
