@@ -5,11 +5,11 @@ import MathModels.test_models as test_models
 import DataAccess.data_access as da
 import azure.functions as func
 
-number_of_simulations = 50
+number_of_simulations = 100
 
 # runtime = number_of_simulations * number_of_models_in_wrapper
 # 5 * 4 = 20 loops
-def start():
+def test():
     game_list = da.get_cleaned_pregames()
 
     best_results = None
@@ -20,10 +20,14 @@ def start():
         for i, result in enumerate(results):
             if result.log_loss < best_results[i].log_loss:
                 best_results[i] = result
-    for best_result in best_results:
+    for index, best_result in enumerate(best_results):
+        if index == (len(best_results) / 2):
+            print("Dimensionality Reduction Input Data:")
         best_result.print()
 
-    #run_models.predict_and_store_todays_games()
+
+def start():
+    run_models.predict_and_store_todays_games()
 
 
 def main(mytimer: func.TimerRequest) -> None:
