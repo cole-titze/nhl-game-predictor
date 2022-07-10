@@ -40,7 +40,7 @@ def get_pca_train_test_data(game_list: np.array, year: int, dimensions: int):
     x_train_norm = norm.transform(x_train)
     x_test_norm = norm.transform(x_test)
     # Select features
-    feature_selector = SelectKBest(chi2, k=32).fit(x_train_norm, y_train)
+    feature_selector = SelectKBest(chi2, k=40).fit(x_train_norm, y_train)
     x_train = feature_selector.transform(x_train)
     x_test = feature_selector.transform(x_test)
 
