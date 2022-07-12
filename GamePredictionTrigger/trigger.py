@@ -8,12 +8,13 @@ import Entities.Mappers.train_test_mapper as train_test
 
 number_of_simulations = 1
 dimensions = 8
+start_year = 2014
 
 # runtime = number_of_simulations * number_of_models_in_wrapper
 # 5 * 4 = 20 loops
 def test():
     # Get Data
-    game_list = da.get_cleaned_pregames()
+    game_list = da.get_cleaned_pregames(start_year)
     x_train, y_train, x_test, y_test = train_test.get_pca_train_test_data(game_list, 2021, dimensions)
 
     estimators = []
