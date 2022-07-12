@@ -8,4 +8,9 @@ For a `TimerTrigger` to work, you provide a schedule in the form of a [cron expr
 
 ## Learn more
 
-<TODO> Documentation
+## Top Score for 2021 season using data from 2010 or later
++ Dimensionality Reduced to 8
++ model: ('Voting All',)
++ log_loss: 0.6580368025248796
++ f1_score: 0.6537023186237845
++ accuracy: 0.6471036585365854

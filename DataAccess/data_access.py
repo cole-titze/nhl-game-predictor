@@ -1,5 +1,4 @@
 import pyodbc
-import numpy as np
 from Entities.Mappers import pregame_mapper
 
 server = 'nhl-game.database.windows.net'
@@ -8,12 +7,12 @@ username = 'console'
 password = '{duvton-qofDic-1runxi}'
 driver = '{ODBC Driver 18 for SQL Server}'
 
-def get_cleaned_pregames() -> list:
+def get_cleaned_pregames(start_year: int) -> list:
     pregame_list = []
     # Grab all entries from sql
     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+password) as conn:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM CleanedGame") # WHERE seasonStartYear > 2016")
+            cursor.execute("SELECT * FROM CleanedGame WHERE seasonStartYear > " + str(start_year))
             row = cursor.fetchone()
             while row:
                 pregame_list.append(row)
@@ -22,7 +21,6 @@ def get_cleaned_pregames() -> list:
 
 def get_future_games() -> list:
     pregame_list = []
-    pre_list = []
     # Grab all entries from sql
     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+password) as conn:
         with conn.cursor() as cursor:
