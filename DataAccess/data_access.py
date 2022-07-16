@@ -7,12 +7,13 @@ username = 'console'
 password = '{duvton-qofDic-1runxi}'
 driver = '{ODBC Driver 18 for SQL Server}'
 
-def get_cleaned_pregames(start_year: int) -> list:
+def get_cleaned_pregames_by_team_id(start_year: int, team_id: int) -> list:
     pregame_list = []
     # Grab all entries from sql
     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+password) as conn:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM CleanedGame WHERE seasonStartYear >= " + str(start_year))
+            cursor.execute("SELECT * FROM CleanedGame WHERE (homeTeamId = " + str(team_id) + "OR awayTeamId = " +
+                           str(team_id) + ") AND seasonStartYear >= " + str(start_year))
             row = cursor.fetchone()
             while row:
                 pregame_list.append(row)

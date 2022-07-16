@@ -13,25 +13,24 @@ start_year = 2016
 # runtime = number_of_simulations * number_of_models_in_wrapper
 # 5 * 4 = 20 loops
 def test():
-    # Get Data
-    game_list = da.get_cleaned_pregames(start_year)
-    x_train, y_train, x_test, y_test = train_test.get_pca_train_test_data(game_list, 2021, dimensions)
-
     estimators = []
     best_results = None
-    for _ in range(number_of_simulations):
-        results = test_models.test_models(x_train, y_train, x_test, y_test)
-        if best_results is None:
-            best_results = results
-        for i, result in enumerate(results):
-            if result.log_loss < best_results[i].log_loss:
-                best_results[i] = result
+    for team_id in range(55):
+        game_list = da.get_cleaned_pregames_by_team_id(start_year, team_id)
+        x_train, y_train, x_test, y_test = train_test.get_pca_train_test_data(game_list, 2021, dimensions)
+        for _ in range(number_of_simulations):
+            results = test_models.test_models(x_train, y_train, x_test, y_test)
+            if best_results is None:
+                best_results = results
+            for i, result in enumerate(results):
+                if result.log_loss < best_results[i].log_loss:
+                    best_results[i] = result
 
-    print("Dimensionality Reduction Input Data:")
-    for index, best_result in enumerate(best_results):
-        # Create list of trained models
-        estimators.append(best_result.model)
-        best_result.print()
+        print("Dimensionality Reduction Input Data:")
+        for index, best_result in enumerate(best_results):
+            # Create list of trained models
+            estimators.append(best_result.model)
+            best_result.print()
 
 
 def start():
