@@ -12,7 +12,7 @@ def get_cleaned_pregames(start_year: int) -> list:
     # Grab all entries from sql
     with pyodbc.connect('DRIVER='+driver+';SERVER=tcp:'+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+password) as conn:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM CleanedGame WHERE seasonStartYear > " + str(start_year))
+            cursor.execute("SELECT * FROM CleanedGame WHERE seasonStartYear >= " + str(start_year))
             row = cursor.fetchone()
             while row:
                 pregame_list.append(row)
