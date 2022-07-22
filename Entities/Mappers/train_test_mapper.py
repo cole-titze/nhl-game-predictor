@@ -36,7 +36,7 @@ def get_pca_train_test_data(game_list: np.array, year: int, chi_dimensions: int,
     x_train = sc.transform(x_train)
     x_test = sc.transform(x_test)
     # Normalize data
-    norm = MinMaxScaler(feature_range=(0,1)).fit(x_train)
+    norm = MinMaxScaler(feature_range=(0, 12)).fit(x_train)
     x_train_norm = norm.transform(x_train)
     x_test_norm = norm.transform(x_test)
     # Select features
