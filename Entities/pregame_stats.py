@@ -74,6 +74,7 @@ class PregameStats:
         x.append(float(self.homeConcededGoalsAvg))
         x.append(float(self.homeConcededGoalsAvgAtHome))
         x.append(float(self.homeRecentConcededGoalsAvgAtHome))
+        x.append(float(self.homeHoursSinceLastGame))
         x.append(float(self.awayWinRatio))
         x.append(float(self.awayRecentWinRatio))
         x.append(float(self.awayRecentGoalsAvg))
@@ -97,5 +98,6 @@ class PregameStats:
         x.append(float(self.awayRosterOffenseValue))
         x.append(float(self.awayRosterDefenseValue))
         x.append(float(self.awayRosterGoalieValue))
+        x.append(float(self.awayHoursSinceLastGame))
 
         return np.asarray(x)

@@ -1,5 +1,5 @@
 # Some Results of Models
-+ best logloss mlp is pca=8          logloss=.65872        accuracy=.643292
++ best logloss mlp is pca=12          logloss=.65349        accuracy=.63643
 + best accuracy mlp finAi is pca=6   logloss=.66176        accuracy=.649390
 + best pca=2 is 300         logloss=.6668        accuracy=.61356
 + best pca=3 is 150         logloss=.6677        accuracy=.62271
