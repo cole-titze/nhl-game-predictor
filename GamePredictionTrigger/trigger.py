@@ -6,9 +6,9 @@ import DataAccess.data_access as da
 import azure.functions as func
 import Entities.Mappers.train_test_mapper as train_test
 
-number_of_simulations = 10
+number_of_simulations = 100
 dimensions = 8
-start_year = 2016
+start_year = 2011
 
 # runtime = number_of_simulations * number_of_models_in_wrapper
 # 5 * 4 = 20 loops

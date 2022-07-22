@@ -27,6 +27,7 @@ class PregameStats:
     homeConcededGoalsAvg: float
     homeConcededGoalsAvgAtHome: float
     homeRecentConcededGoalsAvgAtHome: float
+    homeHoursSinceLastGame: float
     awayWinRatio: float
     awayRecentWinRatio: float
     awayRecentGoalsAvg: float
@@ -50,6 +51,7 @@ class PregameStats:
     awayRosterOffenseValue: float
     awayRosterDefenseValue: float
     awayRosterGoalieValue: float
+    awayHoursSinceLastGame: float
     winner: float
     isExcluded: bool
     
