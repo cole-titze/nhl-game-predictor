@@ -1,7 +1,6 @@
 import numpy as np
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.decomposition import PCA
-from sklearn.model_selection import train_test_split
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import chi2
 
@@ -12,6 +11,7 @@ def get_train_test_data(game_list: np.array, test_year: int):
     y_train = []
     test = []
     train = []
+    predict_ids = []
 
     for game in game_list:
         if game.seasonStartYear == test_year:
@@ -22,14 +22,15 @@ def get_train_test_data(game_list: np.array, test_year: int):
     for game in test:
         y_test.append(game.winner)
         x_test.append(game.map_data())
+        predict_ids.append(game.id)
     for game in train:
         y_train.append(game.winner)
         x_train.append(game.map_data())
-    return np.asarray(x_train), np.asarray(y_train), np.asarray(x_test), np.asarray(y_test)
+    return np.asarray(x_train), np.asarray(y_train), np.asarray(x_test), np.asarray(y_test), np.asarray(predict_ids)
 
 
 def get_pca_train_test_data(game_list: np.array, year: int, chi_dimensions: int, dimensions: int):
-    x_train, y_train, x_test, y_test = get_train_test_data(game_list, year)
+    x_train, y_train, x_test, y_test, predict_ids = get_train_test_data(game_list, year)
 
     # standarize data
     sc = StandardScaler().fit(x_train)
@@ -49,4 +50,4 @@ def get_pca_train_test_data(game_list: np.array, year: int, chi_dimensions: int,
     x_train = pca.fit_transform(x_train)
     x_test = pca.transform(x_test)
 
-    return x_train, y_train, x_test, y_test
+    return x_train, y_train, x_test, y_test, predict_ids
