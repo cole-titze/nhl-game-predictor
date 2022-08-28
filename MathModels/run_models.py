@@ -13,7 +13,7 @@ dimensions = 12
 start_year = 2011
 
 def run_models(test_game):
-    game_list = da.get_cleaned_pregames(2011)
+    game_list = da.get_cleaned_pregames(start_year)
 
     # Use all data to train instead of just some
     x_train, y_train, x_test, y_test = train_test.get_train_test_data(game_list, 0)
@@ -55,8 +55,7 @@ def get_last_year():
 
 def predict_and_store_todays_games():
     print("Running Prediction")
-    last_year = get_last_year()
-    game_list = da.get_cleaned_pregames(2011)
+    game_list = da.get_cleaned_pregames(start_year)
     x_train, y_train, x_test, y_test, predict_ids = train_test.get_pca_train_test_data(game_list, 2021, chi_dimensions, dimensions)
 
     model = model_loader.load()
@@ -66,6 +65,7 @@ def predict_and_store_todays_games():
         home_prob = prediction[0]
         away_prob = prediction[1]
         da.store_probabilities(predict_ids[index], home_prob, away_prob)
+        model.partial_fit([single_game], [y_test[index]])
 
 # runtime = number_of_simulations * number_of_models_in_wrapper
 # 5 * 4 = 20 loops

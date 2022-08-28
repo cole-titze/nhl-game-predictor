@@ -27,6 +27,9 @@ class MathModel:
         self.odds = self.math_model.predict_proba(test_game)
         self.winner = self.math_model.predict(test_game)
 
+    def partial_fit(self, X, y):
+        self.math_model.partial_fit(X, y)
+
     def print_single_game_odds(self):
         print(self.odds)
         print(self.winner)
