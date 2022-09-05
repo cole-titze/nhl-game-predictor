@@ -2,9 +2,9 @@
 # The Python Worker is managed by Azure Functions platform
 # Manually managing azure-functions-worker may cause unexpected issues
 
-azure-functions
-
-pyodbc~=4.0.32
+# azure-functions
+# pyodbc~=4.0.32
+pymssql>=2.2.5
 scikit-learn~=1.0.1
 keras~=2.8.0
 DateTime~=4.3
