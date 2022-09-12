@@ -9,5 +9,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-ENV PYTHONPATH="${PYTHONPATH}:~/releases/nhl-game-predictor"
+ENV PYTHONPATH="${PYTHONPATH}:~/app"
 ENTRYPOINT [ "python", "./LocalRunning/local_running.py" ]
