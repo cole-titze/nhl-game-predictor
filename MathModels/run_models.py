@@ -42,21 +42,23 @@ def get_model():
     current_model.train()
     return current_model
 
-def get_last_year():
+def get_season_start_year():
     end_season_date_str = str(datetime.utcnow().year) + "-08-01"
     current_date = datetime.utcnow()
     end_season_date = datetime.strptime(end_season_date_str, "%Y-%m-%d")
 
     if current_date > end_season_date:
-        last_season_year = current_date.year - 1
+        last_season_year = current_date.year
     else:
-        last_season_year = current_date.year - 2
+        last_season_year = current_date.year - 1
     return last_season_year
 
 def predict_and_store_todays_games():
     print("Running Prediction")
+    season_start_year = get_season_start_year()
     game_list = da.get_cleaned_pregames(start_year)
-    x_train, y_train, x_test, y_test, predict_ids = train_test.get_pca_train_test_data(game_list, 2021, chi_dimensions, dimensions)
+    x_train, y_train, x_test, y_test, predict_ids = train_test.get_pca_train_test_data(game_list, season_start_year, chi_dimensions, dimensions)
+    print("Games to predict: " + str(len(x_test)))
 
     model = model_loader.load()
     for index, single_game in enumerate(x_test):
@@ -66,6 +68,7 @@ def predict_and_store_todays_games():
         away_prob = prediction[1]
         da.store_probabilities(predict_ids[index], home_prob, away_prob)
         model.partial_fit([single_game], [y_test[index]])
+    print("Finished Processing")
 
 # runtime = number_of_simulations * number_of_models_in_wrapper
 # 5 * 4 = 20 loops
