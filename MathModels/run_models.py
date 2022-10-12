@@ -67,7 +67,7 @@ def predict_and_store_todays_games():
         home_prob = prediction[0]
         away_prob = prediction[1]
         da.store_probabilities(predict_ids[index], home_prob, away_prob)
-        model.partial_fit([single_game], [y_test[index]])
+        #model.partial_fit([single_game], [y_test[index]])
     print("Finished Processing")
 
 # runtime = number_of_simulations * number_of_models_in_wrapper
