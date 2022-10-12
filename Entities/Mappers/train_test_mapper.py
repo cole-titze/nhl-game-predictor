@@ -31,7 +31,8 @@ def get_train_test_data(game_list: np.array, test_year: int):
 
 def get_pca_train_test_data(game_list: np.array, year: int, chi_dimensions: int, dimensions: int):
     x_train, y_train, x_test, y_test, predict_ids = get_train_test_data(game_list, year)
-
+    if not x_test:
+        return x_train, y_train, x_test, y_test, predict_ids
     # standarize data
     sc = StandardScaler().fit(x_train)
     x_train = sc.transform(x_train)
