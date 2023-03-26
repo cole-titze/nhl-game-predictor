@@ -28,8 +28,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install xmllint
-        run: sudo apt-get install zlib1g-dev libkrb5-dev libtinfo5
+      - name: Install pymssql dependencies
+        run: sudo apt-get install libcurl4-openssl-dev zlib1g-dev libkrb5-dev freetds-bin freetds-dev libtinfo5 build-essential
 
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'
