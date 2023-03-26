@@ -2,12 +2,9 @@ from dataclasses import dataclass
 
 import numpy as np
 
-
 @dataclass
 class PregameStats:
     id: int
-    homeTeamName: str
-    awayTeamName: str
     seasonStartYear: int
     gameDate: str
     homeWinRatio: float
@@ -53,51 +50,23 @@ class PregameStats:
     awayRosterGoalieValue: float
     awayHoursSinceLastGame: float
     winner: float
-    isExcluded: bool
-    
+
     def map_data(self) -> np.array:
-        x = []
-        x.append(float(self.homeWinRatio))
-        x.append(float(self.homeRecentWinRatio))
-        x.append(float(self.homeRecentGoalsAvg))
-        x.append(float(self.homeRecentConcededGoalsAvg))
-        x.append(float(self.homeRecentSogAvg))
-        x.append(float(self.homeRecentPpgAvg))
-        x.append(float(self.homeRecentHitsAvg))
-        x.append(float(self.homeRecentPimAvg))
-        x.append(float(self.homeRecentBlockedShotsAvg))
-        x.append(float(self.homeRecentTakeawaysAvg))
-        x.append(float(self.homeRecentGiveawaysAvg))
-        x.append(float(self.homeGoalsAvg))
-        x.append(float(self.homeGoalsAvgAtHome))
-        x.append(float(self.homeRecentGoalsAvgAtHome))
-        x.append(float(self.homeConcededGoalsAvg))
-        x.append(float(self.homeConcededGoalsAvgAtHome))
-        x.append(float(self.homeRecentConcededGoalsAvgAtHome))
-        x.append(float(self.homeHoursSinceLastGame))
-        x.append(float(self.awayWinRatio))
-        x.append(float(self.awayRecentWinRatio))
-        x.append(float(self.awayRecentGoalsAvg))
-        x.append(float(self.awayRecentConcededGoalsAvg))
-        x.append(float(self.awayRecentSogAvg))
-        x.append(float(self.awayRecentPpgAvg))
-        x.append(float(self.awayRecentHitsAvg))
-        x.append(float(self.awayRecentPimAvg))
-        x.append(float(self.awayRecentBlockedShotsAvg))
-        x.append(float(self.awayRecentTakeawaysAvg))
-        x.append(float(self.awayRecentGiveawaysAvg))
-        x.append(float(self.awayGoalsAvg))
-        x.append(float(self.awayGoalsAvgAtAway))
-        x.append(float(self.awayRecentGoalsAvgAtAway))
-        x.append(float(self.awayConcededGoalsAvg))
-        x.append(float(self.awayConcededGoalsAvgAtAway))
-        x.append(float(self.awayRecentConcededGoalsAvgAtAway))
-        x.append(float(self.homeRosterOffenseValue))
-        x.append(float(self.homeRosterDefenseValue))
-        x.append(float(self.homeRosterGoalieValue))
-        x.append(float(self.awayRosterOffenseValue))
-        x.append(float(self.awayRosterDefenseValue))
-        x.append(float(self.awayRosterGoalieValue))
-        x.append(float(self.awayHoursSinceLastGame))
+        x = [float(self.homeWinRatio), float(self.homeRecentWinRatio), float(self.homeRecentGoalsAvg),
+             float(self.homeRecentConcededGoalsAvg), float(self.homeRecentSogAvg), float(self.homeRecentPpgAvg),
+             float(self.homeRecentHitsAvg), float(self.homeRecentPimAvg), float(self.homeRecentBlockedShotsAvg),
+             float(self.homeRecentTakeawaysAvg), float(self.homeRecentGiveawaysAvg), float(self.homeGoalsAvg),
+             float(self.homeGoalsAvgAtHome), float(self.homeRecentGoalsAvgAtHome), float(self.homeConcededGoalsAvg),
+             float(self.homeConcededGoalsAvgAtHome), float(self.homeRecentConcededGoalsAvgAtHome),
+             float(self.homeHoursSinceLastGame), float(self.awayWinRatio), float(self.awayRecentWinRatio),
+             float(self.awayRecentGoalsAvg), float(self.awayRecentConcededGoalsAvg), float(self.awayRecentSogAvg),
+             float(self.awayRecentPpgAvg), float(self.awayRecentHitsAvg), float(self.awayRecentPimAvg),
+             float(self.awayRecentBlockedShotsAvg), float(self.awayRecentTakeawaysAvg),
+             float(self.awayRecentGiveawaysAvg), float(self.awayGoalsAvg), float(self.awayGoalsAvgAtAway),
+             float(self.awayRecentGoalsAvgAtAway), float(self.awayConcededGoalsAvg),
+             float(self.awayConcededGoalsAvgAtAway), float(self.awayRecentConcededGoalsAvgAtAway),
+             float(self.homeRosterOffenseValue), float(self.homeRosterDefenseValue), float(self.homeRosterGoalieValue),
+             float(self.awayRosterOffenseValue), float(self.awayRosterDefenseValue), float(self.awayRosterGoalieValue),
+             float(self.awayHoursSinceLastGame)]
 
         return np.asarray(x)
