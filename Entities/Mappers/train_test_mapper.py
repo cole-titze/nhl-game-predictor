@@ -16,7 +16,7 @@ def get_train_test_data(game_list: np.array, test_year: int):
     for game in game_list:
         if game.seasonStartYear == test_year:
             test.append(game)
-        elif not game.isExcluded:
+        else:
             train.append(game)
 
     for game in test:

@@ -3,7 +3,7 @@ from Entities.Mappers import pregame_mapper
 import os
 
 def get_server():
-    return 'nhl-game.database.windows.net'
+    return '192.168.1.19'
 def get_database():
     return os.environ["SQL_DATABASE"]
 def get_username():
@@ -15,7 +15,8 @@ def get_cleaned_pregames(start_year: int) -> list:
     # Grab all entries from sql
     with pymssql.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
         with conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM CleanedGame WHERE seasonStartYear >= " + str(start_year))
+            cursor.execute("SELECT CleanedGame.*, Game.seasonStartYear, Game.winner, Game.gameDate FROM CleanedGame "
+                           "LEFT JOIN Game on gameId = Game.id WHERE seasonStartYear >=" + str(start_year))
             row = cursor.fetchone()
             while row:
                 pregame_list.append(row)
@@ -56,7 +57,10 @@ def get_games_to_predict() -> list:
 def store_probabilities(game_id, home_prob, away_prob):
     with pymssql.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
         with conn.cursor() as cursor:
-            query = "UPDATE PredictedGame SET modelHomeOdds = " + str(home_prob) + ", modelAwayOdds = " + str(away_prob) + "WHERE id = " + str(game_id)
+            query = "IF NOT EXISTS (SELECT * FROM GameOdds WHERE gameId = " + str(game_id) + ") INSERT INTO GameOdds(" \
+                    "gameId, modelHomeOdds, modelAwayOdds) VALUES(" + str(game_id) + "," + str(home_prob) + "," \
+                    + str(away_prob) + ") ELSE UPDATE GameOdds SET modelHomeOdds = " + str(home_prob) \
+                    + ", modelAwayOdds = " + str(away_prob) + " WHERE gameId = " + str(game_id)
             cursor.execute(query)
             conn.commit()
             conn.close()

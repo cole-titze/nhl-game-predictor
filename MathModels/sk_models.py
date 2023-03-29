@@ -35,7 +35,7 @@ class MathModels:
         #self.models.append(Model("SVM", svm_clf))
         #self.models.append(Model("RF", rf))
         #self.models.append(Model("MLP", mlp))
-        self.models.append(Model("MLP Testing", mlp_test))
+        #self.models.append(Model("MLP Testing", mlp_test))
         self.models.append(Model("MLP", mlp))
         #self.models.append(Model("Naive Bayes", nb))
         #self.models.append(Model("Ensemble", ensemble))
