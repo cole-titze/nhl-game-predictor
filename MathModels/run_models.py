@@ -7,7 +7,7 @@ import MathModels.pickle_skmodel as model_saver
 import MathModels.test_models as test_models
 import DataAccess.data_access as da
 
-number_of_simulations = 10
+number_of_simulations = 1
 chi_dimensions = 42
 dimensions = 12
 start_year = 2011
@@ -88,9 +88,9 @@ def find_and_store_best_model():
         results = test_models.test_models(x_train, y_train, x_test, y_test)
         if best_results is None:
             best_results = results
-        for i, result in enumerate(results):
-            if result.log_loss < best_results[i].log_loss:
-                best_results[i] = result
+        for j, result in enumerate(results):
+            if result.log_loss < best_results[j].log_loss:
+                best_results[j] = result
 
     # Find best model and print all models
     best_model = best_results[0]

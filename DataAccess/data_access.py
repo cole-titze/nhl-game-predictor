@@ -1,4 +1,4 @@
-import pymssql
+import pytds
 from Entities.Mappers import pregame_mapper
 import os
 
@@ -13,7 +13,7 @@ def get_password():
 def get_cleaned_pregames(start_year: int) -> list:
     pregame_list = []
     # Grab all entries from sql
-    with pymssql.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
+    with pytds.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
         with conn.cursor() as cursor:
             cursor.execute("SELECT CleanedGame.*, Game.seasonStartYear, Game.winner, Game.gameDate FROM CleanedGame "
                            "LEFT JOIN Game on gameId = Game.id WHERE seasonStartYear >=" + str(start_year))
@@ -45,7 +45,7 @@ def get_games_to_predict_query():
 def get_games_to_predict() -> list:
     games = []
     # Grab all entries from sql
-    with pymssql.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
+    with pytds.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
         with conn.cursor() as cursor:
             cursor.execute(get_games_to_predict_query())
             row = cursor.fetchone()
@@ -55,7 +55,7 @@ def get_games_to_predict() -> list:
     return pregame_mapper.map_db_pregames_to_entities(games)
 
 def store_probabilities(game_id, home_prob, away_prob):
-    with pymssql.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
+    with pytds.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
         with conn.cursor() as cursor:
             query = "IF NOT EXISTS (SELECT * FROM GameOdds WHERE gameId = " + str(game_id) + ") INSERT INTO GameOdds(" \
                     "gameId, modelHomeOdds, modelAwayOdds) VALUES(" + str(game_id) + "," + str(home_prob) + "," \
