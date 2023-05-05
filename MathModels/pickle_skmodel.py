@@ -3,7 +3,9 @@ import pickle
 filename = './SavedModel/finalized_model.sav'
 
 def save(model):
-    pickle.dump(model, open(filename, 'wb'))
+    with open(filename, 'wb') as file:
+        pickle.dump(model, file)
 
 def load():
-    return pickle.load(open(filename, 'rb'))
+    with open(filename, 'rb') as file:
+        return pickle.load(file)
