@@ -1,6 +1,6 @@
 import pickle
 
-filename = '../SavedModel/finalized_model.sav'
+filename = './SavedModel/finalized_model.sav'
 
 def save(model):
     pickle.dump(model, open(filename, 'wb'))
