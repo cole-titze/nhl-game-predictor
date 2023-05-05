@@ -2,12 +2,7 @@
 # The Python Worker is managed by Azure Functions platform
 # Manually managing azure-functions-worker may cause unexpected issues
 
-# azure-functions
-# pyodbc~=4.0.32
-# pymssql>=2.2.5
-# tensorflow~=2.8.0
-# keras~=2.8.0
 scikit-learn~=1.2.2
-DateTime~=4.3
-numpy~=1.21.4
+DateTime~=5.1
+numpy~=1.24.3
 python-tds~=1.12.0
