@@ -64,3 +64,23 @@ def store_probabilities(game_id, home_prob, away_prob):
             cursor.execute(query)
             conn.commit()
             conn.close()
+
+def store_model(model_data):
+    model_id = 1
+    with pytds.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
+        with conn.cursor() as cursor:
+            query = "IF NOT EXISTS (SELECT * FROM ClassificationModel WHERE id = " + str(model_id) \
+                    + ") INSERT INTO ClassificationModel(id, modelFile) VALUES(" + str(model_id) + ",'" \
+                    + str(model_data) + "') ELSE UPDATE ClassificationModel SET modelFile = '" \
+                    + str(model_data) + "' WHERE id = " + str(model_id)
+            cursor.execute(query)
+            conn.commit()
+            conn.close()
+
+def get_model():
+    model_id = 1
+    with pytds.connect(server=get_server(), user=get_username(), password=get_password(), database=get_database()) as conn:
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT modelFile FROM ClassificationModel WHERE id = " + str(model_id))
+            model_data = cursor.fetchone()[0]
+    return model_data

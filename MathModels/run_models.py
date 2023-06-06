@@ -60,7 +60,7 @@ def predict_and_store_todays_games():
     x_train, y_train, x_test, y_test, predict_ids = train_test.get_pca_train_test_data(game_list, season_start_year, chi_dimensions, dimensions)
     print("Games to predict: " + str(len(x_test)))
 
-    model = model_loader.load()
+    model = model_loader.load_model()
     for index, single_game in enumerate(x_test):
         model.predict_single_game([single_game])
         prediction = model.odds[0]
@@ -104,4 +104,4 @@ def find_and_store_best_model():
     best_model = best_model.model
 
     print("Determine Best Model and save with pickle...")
-    model_saver.save(best_model)
+    model_saver.save_model(best_model)
