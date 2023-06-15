@@ -1,5 +1,3 @@
-import MathModels.sk_models as m
-import MathModels.sk_model_wrapper as model_wrapper
 from datetime import datetime
 import MathModels.pickle_skmodel as model_loader
 import Entities.Mappers.train_test_mapper as train_test
@@ -11,36 +9,6 @@ number_of_simulations = 1
 chi_dimensions = 42
 dimensions = 12
 start_year = 2011
-
-def run_models(test_game):
-    game_list = da.get_cleaned_pregames(start_year)
-
-    # Use all data to train instead of just some
-    x_train, y_train, x_test, y_test = train_test.get_train_test_data(game_list, 0)
-
-    MathModelWrapper = model_wrapper.MathModel
-    Models = m.MathModels()
-
-    prediction = []
-    for model in Models.models:
-        current_model = MathModelWrapper(x_train, y_train, x_test, y_test, model)
-        current_model.train()
-        current_model.predict_single_game(test_game)
-        prediction = current_model.odds[0]
-    return prediction
-
-def get_model():
-    game_list = da.get_cleaned_pregames(2011)
-
-    # Use all data to train instead of just some
-    x_train, y_train, x_test, y_test = train_test.get_train_test_data(game_list, 0)
-
-    MathModelWrapper = model_wrapper.MathModel
-    model = m.MathModels().models[0]
-
-    current_model = MathModelWrapper(x_train, y_train, x_test, y_test, model)
-    current_model.train()
-    return current_model
 
 def get_season_start_year():
     end_season_date_str = str(datetime.utcnow().year) + "-08-01"
