@@ -6,7 +6,7 @@ import MathModels.test_models as test_models
 import DataAccess.data_access as da
 
 number_of_simulations = 1
-chi_dimensions = 42
+chi_dimensions = 24
 dimensions = 12
 start_year = 2011
 
@@ -42,7 +42,7 @@ def predict_and_store_todays_games():
 # 5 * 4 = 20 loops
 def find_and_store_best_model():
     # Get Data
-    test_year = get_season_start_year() - 1
+    test_year = get_season_start_year()
     game_list = da.get_cleaned_pregames(start_year)
     x_train, y_train, x_test, y_test, _ = train_test.get_pca_train_test_data(game_list, test_year, chi_dimensions, dimensions)
 

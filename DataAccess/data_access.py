@@ -3,7 +3,7 @@ from Entities.Mappers import pregame_mapper
 import os
 
 def get_server():
-    return '192.168.1.19'
+    return '10.0.0.19'
 def get_database():
     return os.environ["SQL_DATABASE"]
 def get_username():

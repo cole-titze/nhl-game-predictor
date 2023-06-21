@@ -14,8 +14,7 @@ class MathModels:
     def __init__(self):
         self.models = []
         knn = KNeighborsClassifier(n_neighbors=150, n_jobs=-1)
-        mlp = MLPClassifier(solver='adam', max_iter=1200, activation='logistic', alpha=1e-5,
-                                 hidden_layer_sizes=(12, 8, 4))
+        mlp = MLPClassifier(solver='adam', max_iter=1200, activation='logistic', alpha=1e-5, hidden_layer_sizes=(12, 8, 4))
         rf = RandomForestClassifier(n_estimators=600, criterion='entropy', n_jobs=-1)
         mlp_test = MLPClassifier(solver='adam', max_iter=600, activation='logistic', alpha=1e-5, hidden_layer_sizes=(40, 32, 16, 8))
         svm_clf = svm.SVC(probability=True)
