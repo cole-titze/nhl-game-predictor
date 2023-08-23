@@ -14,7 +14,7 @@ def get_train_test_data(game_list: np.array, test_year: int):
     predict_ids = []
 
     for game in game_list:
-        if game.seasonStartYear == test_year:
+        if game.seasonStartYear >= test_year:
             test.append(game)
         else:
             train.append(game)

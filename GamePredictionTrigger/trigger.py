@@ -7,4 +7,6 @@ def test():
 
 def start():
     run_models.predict_and_store_todays_games()
-    
+
+def tune():
+    run_models.tune_models()

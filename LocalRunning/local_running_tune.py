@@ -16,7 +16,7 @@ def set_local_environment():
 
 t0 = time.time()
 set_local_environment()
-trigger.test()
+trigger.tune()
 t1 = time.time()
 total = t1-t0
 print(total)
