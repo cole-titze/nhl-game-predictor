@@ -1,5 +1,3 @@
-import datetime
-import logging
 import MathModels.run_models as run_models
 
 def test():
