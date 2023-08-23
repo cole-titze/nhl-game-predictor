@@ -20,14 +20,14 @@ def tune_models():
     first_layer_neurons = np.arange(10, 200, 10)
     second_layer_neurons = np.arange(10, 200, 10)
     third_layer_neurons = np.arange(10, 200, 10)
-    hidden_layer_sizes = list(first_layer_neurons) + list(product(first_layer_neurons, second_layer_neurons)) + list(product(first_layer_neurons, second_layer_neurons, third_layer_neurons))
-
+    #hidden_layer_sizes = list(first_layer_neurons) + list(product(first_layer_neurons, second_layer_neurons)) + list(product(first_layer_neurons, second_layer_neurons, third_layer_neurons))
+    hidden_layer_sizes = list(product(first_layer_neurons, second_layer_neurons, third_layer_neurons))
     parameters = {
                     'solver': ['adam','lbfgs','sgd'],
-                    'max_iter': [800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000],
-                    'alpha': 10.0 ** -np.arange(1, 10),
+                    'max_iter': [800, 1000, 1200, 1400, 1600, 1800, 2000],
+                    'alpha': 10.0 ** -np.arange(1, 6),
                     'hidden_layer_sizes': hidden_layer_sizes,
-                    'random_state': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+                    'random_state': [0, 2, 4, 6, 8],
                     'activation': ["logistic", "relu", "tanh"]
                   }
 
