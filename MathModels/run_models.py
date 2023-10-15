@@ -8,6 +8,7 @@ chi_dimensions = 24
 dimensions = 12
 start_year = 2011
 
+
 def get_season_start_year():
     end_season_date_str = str(datetime.utcnow().year) + "-08-01"
     current_date = datetime.utcnow()
@@ -19,11 +20,13 @@ def get_season_start_year():
         last_season_year = current_date.year - 1
     return last_season_year
 
-def predict_and_store_todays_games():
+
+def predict_and_store_unplayed_games():
     print("Running Prediction")
-    season_start_year = 2021 #get_season_start_year()
-    game_list = da.get_cleaned_pregames(start_year)
-    x_train, y_train, x_test, y_test, predict_ids = train_test.get_pca_train_test_data(game_list, season_start_year, chi_dimensions, dimensions)
+    season_start_year = get_season_start_year()
+    game_list = da.get_training_and_unplayed_cleaned_pregames(season_start_year)
+    x_train, y_train, x_test, y_test, predict_ids = train_test.get_pca_train_test_data(game_list, season_start_year,
+                                                                                       chi_dimensions, dimensions)
     print("Games to predict: " + str(len(x_test)))
 
     model = model_loader.load_model()
@@ -33,6 +36,5 @@ def predict_and_store_todays_games():
         home_prob = prediction[0]
         away_prob = prediction[1]
         da.store_probabilities(predict_ids[index], home_prob, away_prob)
-        #model.partial_fit([single_game], [y_test[index]])
+        # model.partial_fit([single_game], [y_test[index]])
     print("Finished Processing")
-
