@@ -29,11 +29,11 @@ class TestModels:
             ("MLP", mlp1), ("knn", knn)], n_jobs=-1, voting="soft")
 
         self.models.append(Model("MLP 1", mlp1, {}))
-        self.models.append(Model("MLP 2", mlp2, {}))
-        self.models.append(Model("MLP 3", mlp3, {}))
-        self.models.append(Model("KNN", knn, {}))
-        self.models.append(Model("Stacking 1", stacking1, {}))
-        self.models.append(Model("Voting 1", voting1, {}))
+        #self.models.append(Model("MLP 2", mlp2, {}))
+        #self.models.append(Model("MLP 3", mlp3, {}))
+        #self.models.append(Model("KNN", knn, {}))
+        #self.models.append(Model("Stacking 1", stacking1, {}))
+        #self.models.append(Model("Voting 1", voting1, {}))
 
 
 class TuneModels:
@@ -53,7 +53,7 @@ class TuneModels:
         third_layer_neurons = [110]
         fourth_layer_neurons = np.arange(10, 200, 10)
 
-        small_hidden_layer_sizes = list(first_layer_neurons)
+        small_hidden_layer_sizes = list(first_layer_neurons) + list(product(first_layer_neurons, second_layer_neurons))
         large_hidden_layer_sizes = list(
             product(first_layer_neurons, second_layer_neurons, third_layer_neurons, fourth_layer_neurons))
         mlp = MLPClassifier()
@@ -61,8 +61,8 @@ class TuneModels:
             'solver': ['adam'],
             'max_iter': [800],
             'alpha': [.000001],
-            'hidden_layer_sizes': small_hidden_layer_sizes,
-            'random_state': [0],
+            'hidden_layer_sizes': large_hidden_layer_sizes,
+            'random_state': [0, 8],
             'activation': ["logistic"]
         }
 
@@ -72,7 +72,7 @@ class TuneModels:
         nb = GaussianNB()
 
         self.models.append(Model("MLP", mlp, mlp_parameters))
-        self.models.append(Model("KNN", knn, knn_parameters))
-        self.models.append(Model("SVM", svm_clf, {}))
-        self.models.append(Model("RF", rf, {}))
-        self.models.append(Model("NB", nb, {}))
+        #self.models.append(Model("KNN", knn, knn_parameters))
+        #self.models.append(Model("SVM", svm_clf, {}))
+        #self.models.append(Model("RF", rf, {}))
+        #self.models.append(Model("NB", nb, {}))
