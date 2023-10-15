@@ -8,5 +8,8 @@ def test():
 def start():
     run_models.predict_and_store_unplayed_games()
 
+def predict_all_games():
+    run_models.predict_all_games()
+
 def tune():
     tune_models.tune_models()
